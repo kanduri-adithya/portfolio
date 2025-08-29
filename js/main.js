@@ -141,6 +141,14 @@
 	    	}
 		});
 
+		// Close mobile menu when clicking on menu items
+		$('#navbar a').click(function(){
+			if ( $('body').hasClass('offcanvas') ) {
+				$('body').removeClass('offcanvas');
+				$('.js-colorlib-nav-toggle').removeClass('active');
+			}
+		});
+
 	};
 
 	var clickMenu = function() {

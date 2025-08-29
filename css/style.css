@@ -115,13 +115,28 @@ figure figcaption {
 
 @media screen and (max-width: 768px) {
     #colorlib-aside {
-        width: 300px;
-        -moz-transform: translateX(-300px);
-        -webkit-transform: translateX(-300px);
-        -ms-transform: translateX(-300px);
-        -o-transform: translateX(-300px);
-        transform: translateX(-300px);
+        width: 280px;
+        -moz-transform: translateX(-280px);
+        -webkit-transform: translateX(-280px);
+        -ms-transform: translateX(-280px);
+        -o-transform: translateX(-280px);
+        transform: translateX(-280px);
         padding-top: 4em;
+        height: 100vh;
+        overflow-y: auto;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1002;
+        display: none;
+    }
+    
+    body:not(.offcanvas) #colorlib-aside {
+        display: none !important;
+    }
+    
+    body.offcanvas #colorlib-aside {
+        display: block !important;
     }
 }
 
@@ -139,7 +154,7 @@ figure figcaption {
 #colorlib-aside .position {
     display: block;
     margin-bottom: 2em;
-    font-size: 12px;
+    font-size: 14px;
     text-transform: uppercase;
 }
 
@@ -181,7 +196,7 @@ figure figcaption {
 }
 
 #colorlib-aside #colorlib-main-menu ul li {
-    margin: 0 0 10px 0;
+    margin: 0 0 20px 0;
     padding: 0;
     list-style: none;
     font-size: 12px;
@@ -492,20 +507,28 @@ body.offcanvas #colorlib-aside {
     -ms-transform: translateX(0);
     -o-transform: translateX(0);
     transform: translateX(0);
-    width: 300px;
+    width: 280px;
     background: #f2f3f7;
     z-index: 999;
     position: fixed;
+    display: block !important;
 }
 
-body.offcanvas #colorlib-main,
-body.offcanvas .colorlib-nav-toggle {
+body.offcanvas #colorlib-main {
     top: 0;
-    -moz-transform: translateX(300px);
-    -webkit-transform: translateX(300px);
-    -ms-transform: translateX(300px);
-    -o-transform: translateX(300px);
-    transform: translateX(300px);
+    -moz-transform: translateX(0);
+    -webkit-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+    transform: translateX(0);
+}
+
+body.offcanvas .colorlib-nav-toggle {
+    -moz-transform: translateX(280px);
+    -webkit-transform: translateX(280px);
+    -ms-transform: translateX(280px);
+    -o-transform: translateX(280px);
+    transform: translateX(280px);
 }
 
 .colorlib-narrow-content {
@@ -1405,7 +1428,6 @@ body.offcanvas .colorlib-nav-toggle {
     display: -moz-inline-stack;
     display: inline-block;
     zoom: 1;
-    *display: inline;
     -webkit-border-radius: 7px;
     -moz-border-radius: 7px;
     -ms-border-radius: 7px;
@@ -1742,14 +1764,13 @@ body.offcanvas .colorlib-nav-toggle {
     display: -moz-inline-stack;
     display: inline-block;
     zoom: 1;
-    *display: inline;
     width: 30px;
     height: 2px;
     color: #000;
     font: bold 14px/.4 Helvetica;
     text-transform: uppercase;
     text-indent: -55px;
-    background: #000;
+    background: #333;
     -webkit-transition: all .2s ease-out;
     -o-transition: all .2s ease-out;
     transition: all .2s ease-out;
@@ -1760,26 +1781,9 @@ body.offcanvas .colorlib-nav-toggle {
     content: '';
     width: 30px;
     height: 2px;
-    background: #000;
+    background: #333;
     position: absolute;
     left: 0;
-    -webkit-transition: 0.2s;
-    -o-transition: 0.2s;
-    transition: 0.2s;
-}
-
-.colorlib-nav-toggle.dark i {
-    position: relative;
-    color: #000;
-    background: #000;
-    -webkit-transition: all .2s ease-out;
-    -o-transition: all .2s ease-out;
-    transition: all .2s ease-out;
-}
-
-.colorlib-nav-toggle.dark i::before,
-.colorlib-nav-toggle.dark i::after {
-    background: #000;
     -webkit-transition: 0.2s;
     -o-transition: 0.2s;
     transition: 0.2s;
@@ -1793,45 +1797,42 @@ body.offcanvas .colorlib-nav-toggle {
     bottom: -7px;
 }
 
-.colorlib-nav-toggle:hover i::before {
-    top: -10px;
-}
-
-.colorlib-nav-toggle:hover i::after {
-    bottom: -10px;
-}
-
 .colorlib-nav-toggle.active i {
     background: transparent;
 }
 
 .colorlib-nav-toggle.active i::before {
     top: 0;
-    -webkit-transform: rotateZ(45deg);
-    -moz-transform: rotateZ(45deg);
-    -ms-transform: rotateZ(45deg);
-    -o-transform: rotateZ(45deg);
-    transform: rotateZ(45deg);
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    background: #fff;
 }
 
 .colorlib-nav-toggle.active i::after {
     bottom: 0;
-    -webkit-transform: rotateZ(-45deg);
-    -moz-transform: rotateZ(-45deg);
-    -ms-transform: rotateZ(-45deg);
-    -o-transform: rotateZ(-45deg);
-    transform: rotateZ(-45deg);
+    top: 0;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    background: #fff;
 }
 
 .colorlib-nav-toggle {
     position: fixed;
-    left: -5px;
-    top: 0px;
+    left: 15px;
+    top: 15px;
     z-index: 9999;
     cursor: pointer;
     opacity: 1;
     visibility: hidden;
-    padding: 20px;
+    padding: 15px;
+    background: transparent;
+    border-radius: 5px;
     -webkit-transition: 0.5s;
     -o-transition: 0.5s;
     transition: 0.5s;
@@ -1895,138 +1896,584 @@ body.offcanvas .colorlib-nav-toggle {
 
 /* =====================================
 *	Mobile First Responsive Design
-*
+*	Enhanced mobile responsiveness with proper hamburger menu
 * ======================================================= */
+
+/* Hamburger Menu Mobile Enhancements */
+@media screen and (max-width: 768px) {
+    .colorlib-nav-toggle {
+        display: block !important;
+        position: fixed !important;
+        top: 15px !important;
+        left: 15px !important;
+        z-index: 10000 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    
+    .colorlib-nav-toggle i {
+        background: #fff !important;
+        width: 25px;
+        height: 2px;
+    }
+    
+    .colorlib-nav-toggle i::before,
+    .colorlib-nav-toggle i::after {
+        background: #fff !important;
+        width: 25px;
+        height: 2px;
+    }
+    
+    .colorlib-nav-toggle i::before {
+        top: -6px;
+    }
+
+    .colorlib-nav-toggle i::after {
+        bottom: -6px;
+    }
+    
+    .colorlib-nav-toggle.active i {
+        background: transparent !important;
+    }
+    
+    .colorlib-nav-toggle.active i::before {
+        top: 0 !important;
+        -webkit-transform: rotate(45deg) !important;
+        transform: rotate(45deg) !important;
+        background: #fff !important;
+    }
+    
+    .colorlib-nav-toggle.active i::after {
+        bottom: 0 !important;
+        top: 0 !important;
+        -webkit-transform: rotate(-45deg) !important;
+        transform: rotate(-45deg) !important;
+        background: #fff !important;
+    }
+    
+    /* Ensure sidebar starts hidden on mobile */
+    #colorlib-aside {
+        display: none !important;
+        transform: translateX(-280px) !important;
+    }
+    
+    /* When menu is open */
+    body.offcanvas #colorlib-aside {
+        display: block !important;
+        transform: translateX(0) !important;
+    }
+    
+    body.offcanvas #colorlib-main {
+        transform: translateX(0) !important;
+    }
+    
+    /* Add overlay when menu is open */
+    body.offcanvas::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 998;
+    }
+    
+    /* Ensure main content is always visible and full width on mobile */
+    #colorlib-main {
+        width: 100% !important;
+        margin-left: 0 !important;
+        float: none !important;
+    }
+}
 
 /* Mobile Styles (max-width: 768px) */
 @media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
     .position {
-        font-size: 0.9em !important;
+        font-size: 13px !important;
         line-height: 1.4;
+        margin-bottom: 1.5em;
+    }
+
+    #colorlib-aside {
+        display: none !important;
+        width: 280px;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1002;
+        transform: translateX(-280px);
+        transition: transform 0.3s ease;
+    }
+
+    body.offcanvas #colorlib-aside {
+        display: block !important;
+        transform: translateX(0) !important;
+    }
+
+    #colorlib-main {
+        margin-left: 0 !important;
+        width: 100% !important;
+        padding: 0 !important;
     }
 
     .colorlib-heading {
-        font-size: 1.8rem !important;
+        font-size: 24px !important;
+        margin-bottom: 2em;
+        letter-spacing: 2px;
     }
 
     .heading-meta {
-        font-size: 0.9rem !important;
+        font-size: 9px !important;
+        letter-spacing: 3px;
     }
 
     .services {
         height: auto !important;
-        min-height: 150px;
-        padding: 20px 15px;
+        min-height: 120px;
+        padding: 15px 20px;
+        margin-bottom: 20px;
     }
 
     .services h3 {
-        font-size: 0.9rem !important;
-        line-height: 1.5;
+        font-size: 13px !important;
+        line-height: 1.4;
+        margin: 0;
+    }
+
+    .services h3 b {
+        font-size: 15px !important;
+        display: block;
+        margin-bottom: 8px;
     }
 
     .timeline-label h2 {
-        font-size: 1.3rem !important;
+        font-size: 18px !important;
+        line-height: 1.3;
+        margin-bottom: 15px;
     }
 
     .timeline-label span {
-        font-size: 0.8rem !important;
+        font-size: 12px !important;
+        line-height: 1.4;
+    }
+
+    .timeline-label p,
+    .timeline-label ul li {
+        font-size: 13px !important;
+        line-height: 1.5;
     }
 
     .about-desc p {
-        font-size: 1rem !important;
+        font-size: 14px !important;
+        line-height: 1.6;
     }
 
     .panel-body p {
-        font-size: 0.9rem !important;
+        font-size: 13px !important;
+        line-height: 1.5;
+    }
+
+    .panel-heading a {
+        font-size: 13px !important;
+        padding: 15px 20px;
     }
 
     .social_icon {
         padding: 15px 0;
+        text-align: center;
     }
 
     .social_icon ul li {
-        padding-left: 20px !important;
+        padding-left: 15px !important;
     }
 
-    #colorlib-aside {
-        width: 100%;
-        height: auto;
-        position: relative;
-    }
-
-    #colorlib-main {
-        margin-left: 0;
+    .social_icon ul li:first-child {
+        padding-left: 0 !important;
     }
 
     /* Portfolio specific responsive styles */
     .project {
-        height: 250px !important;
+        height: 220px !important;
         margin-bottom: 20px !important;
         background-size: cover !important;
         background-position: center !important;
     }
 
     .project .con h3 {
-        padding-top: 4ch !important;
-        font-size: clamp(1rem, 4vw, 1.3rem) !important;
-        line-height: 1.4 !important;
+        padding-top: 2ch !important;
+        font-size: 14px !important;
+        line-height: 1.3 !important;
+        text-align: center;
     }
 
     .project .btn {
-        margin-top: 10px !important;
-        padding: 8px 15px !important;
-        font-size: 0.9rem !important;
+        margin-top: 8px !important;
+        padding: 6px 12px !important;
+        font-size: 11px !important;
+        letter-spacing: 1px;
+    }
+
+    /* Hero section mobile improvements */
+    #colorlib-hero {
+        width: 100% !important;
+        margin-bottom: 0 !important;
+        min-height: 100vh !important;
+        height: 100vh !important;
+    }
+
+    #colorlib-hero .flexslider {
+        height: 100vh !important;
+        min-height: 100vh !important;
+    }
+
+    #colorlib-hero .flexslider .slides li {
+        min-height: 100vh !important;
+        height: 100vh !important;
+        background-size: cover !important;
+        background-position: 90% center !important;
+        background-repeat: no-repeat !important;
+    }
+
+    #colorlib-hero .flexslider .slider-text {
+        min-height: 100vh !important;
+        height: 100vh !important;
+    }
+
+    #colorlib-hero .flexslider .slider-text>.slider-text-inner {
+        padding: 1.5em;
+        text-align: center;
+        min-height: 100vh !important;
+        height: 100vh !important;
+        display: table-cell !important;
+        vertical-align: top !important;
+        padding-top: 35vh !important;
+    }
+
+    #colorlib-hero .flexslider .slider-text>.slider-text-inner h1 {
+        font-size: clamp(28px, 8vw, 36px) !important;
+        margin-bottom: 15px;
+    }
+
+    /* Contact form improvements */
+    .form-control {
+        font-size: 14px;
+        height: 45px;
+    }
+
+    #message {
+        height: 100px;
+    }
+
+    /* Navigation improvements */
+    #colorlib-aside #colorlib-main-menu ul li {
+        margin: 0 0 25px 0;
+        font-size: 13px;
+    }
+
+    #colorlib-aside #colorlib-main-menu ul li a {
+        padding: 12px 0;
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    /* Narrow content padding */
+    .colorlib-narrow-content {
+        padding: 0 15px;
+    }
+
+    /* Section padding adjustments */
+    .colorlib-experience,
+    .colorlib-skills,
+    .colorlib-education,
+    .colorlib-blog,
+    .colorlib-work,
+    .colorlib-about,
+    .colorlib-services,
+    .colorlib-contact {
+        padding-top: 3em;
+        padding-bottom: 4em;
     }
 }
 
 /* Small Mobile Styles (max-width: 480px) */
 @media (max-width: 480px) {
+    body {
+        font-size: 13px;
+    }
+
     .position {
-        font-size: 0.8em !important;
+        font-size: 12px !important;
         text-align: center;
+        margin-bottom: 1em;
+    }
+
+    #colorlib-aside {
+        padding-top: 1.5em;
+        padding-bottom: 1.5em;
+    }
+
+    .colorlib-heading {
+        font-size: 20px !important;
+        letter-spacing: 1px;
+        margin-bottom: 1.5em;
+    }
+
+    .heading-meta {
+        font-size: 8px !important;
+        letter-spacing: 2px;
     }
 
     .services {
-        margin-bottom: 20px;
+        margin-bottom: 15px;
+        padding: 12px 15px;
+        min-height: 100px;
+    }
+
+    .services h3 {
+        font-size: 12px !important;
+        line-height: 1.3;
+    }
+
+    .services h3 b {
+        font-size: 14px !important;
+        margin-bottom: 5px;
+    }
+
+    .timeline-label h2 {
+        font-size: 16px !important;
+        margin-bottom: 10px;
+    }
+
+    .timeline-label span {
+        font-size: 11px !important;
     }
 
     .timeline-label ul li {
-        font-size: 0.8rem !important;
+        font-size: 12px !important;
+        line-height: 1.4;
+    }
+
+    .about-desc p {
+        font-size: 13px !important;
+        line-height: 1.5;
+    }
+
+    .panel-body p {
+        font-size: 12px !important;
+    }
+
+    .panel-heading a {
+        font-size: 12px !important;
+        padding: 12px 15px;
     }
 
     .btn {
-        padding: 8px 16px;
-        font-size: 0.9rem;
+        padding: 6px 12px;
+        font-size: 11px;
+        letter-spacing: 0.5px;
     }
 
     .colorlib-narrow-content {
-        padding: 0 15px;
+        padding: 0 10px;
+    }
+
+    /* Hero section for small mobile */
+    #colorlib-hero {
+        height: 100vh !important;
+        min-height: 100vh !important;
+        margin-bottom: 0 !important;
+    }
+
+    #colorlib-hero .flexslider {
+        height: 100vh !important;
+        min-height: 100vh !important;
+    }
+
+    #colorlib-hero .flexslider .slides li {
+        height: 100vh !important;
+        min-height: 100vh !important;
+    }
+
+    #colorlib-hero .flexslider .slider-text {
+        height: 100vh !important;
+        min-height: 100vh !important;
+    }
+
+    #colorlib-hero .flexslider .slider-text>.slider-text-inner {
+        padding: 1em;
+        height: 100vh !important;
+        min-height: 100vh !important;
+        display: table-cell !important;
+        vertical-align: top !important;
+        padding-top: 30vh !important;
+    }
+
+    #colorlib-hero .flexslider .slider-text>.slider-text-inner h1 {
+        font-size: clamp(24px, 7vw, 30px) !important;
+        margin-bottom: 10px;
     }
 
     /* Portfolio specific styles for small mobile */
     .project {
-        height: 200px !important;
+        height: 180px !important;
+        margin-bottom: 15px !important;
     }
 
     .project .con h3 {
-        padding-top: 2ch !important;
-        font-size: clamp(0.9rem, 5vw, 1.1rem) !important;
+        padding-top: 1ch !important;
+        font-size: 12px !important;
+        line-height: 1.2 !important;
     }
 
     .project .btn {
-        padding: 6px 12px !important;
-        font-size: 0.8rem !important;
+        padding: 5px 10px !important;
+        font-size: 10px !important;
+        margin-top: 5px !important;
+    }
+
+    /* Social icons for small mobile */
+    .social_icon ul li {
+        padding-left: 10px !important;
+    }
+
+    /* Contact form adjustments */
+    .form-control {
+        font-size: 13px;
+        height: 40px;
+    }
+
+    #message {
+        height: 80px;
+    }
+
+    /* Navigation menu for small mobile */
+    #colorlib-aside #colorlib-main-menu ul li {
+        font-size: 12px;
+        margin: 0 0 20px 0;
+    }
+
+    #colorlib-aside #colorlib-main-menu ul li a {
+        padding: 10px 0;
+        font-size: 12px;
+    }
+
+    /* Section padding for small mobile */
+    .colorlib-experience,
+    .colorlib-skills,
+    .colorlib-education,
+    .colorlib-blog,
+    .colorlib-work,
+    .colorlib-about,
+    .colorlib-services,
+    .colorlib-contact {
+        padding-top: 2em;
+        padding-bottom: 3em;
+    }
+
+    /* Timeline adjustments */
+    .timeline-centered .timeline-entry .timeline-entry-inner .timeline-label {
+        padding: 1em;
+        margin-left: 50px;
+    }
+
+    .timeline-centered .timeline-entry .timeline-entry-inner .timeline-icon {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+    }
+
+    /* Feature icons */
+    .colorlib-feature .colorlib-icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .colorlib-feature .colorlib-icon i {
+        font-size: 30px;
+        height: 60px;
+    }
+
+    .colorlib-feature .colorlib-text {
+        padding-left: 80px;
     }
 }
 
-/* Tablet Styles (min-width: 769px and max-width: 1024px) */
-@media (min-width: 769px) and (max-width: 1024px) {
-    .services h3 {
-        font-size: small !important;
+/* Additional mobile improvements */
+@media (max-width: 768px) {
+    /* Ensure text is readable on all mobile devices */
+    body {
+        line-height: 1.6;
     }
+    
+    /* Better spacing for sections */
+    .about-desc h2 {
+        font-size: 22px !important;
+        margin-bottom: 20px;
+    }
+    
+    /* Improve expertise section spacing */
+    .services {
+        box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+    
+    /* Better button styling */
+    .btn-primary {
+        border-radius: 25px;
+        font-weight: 500;
+    }
+    
+    /* Improve form styling */
+    .form-control {
+        border-radius: 5px;
+        border: 1px solid #ddd;
+    }
+    
+    /* Better timeline styling */
+    .timeline-centered .timeline-entry .timeline-entry-inner .timeline-label {
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Improve social icons */
+    .social_icon {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px 0;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+    
+    /* Portfolio project hover effects disabled on mobile for better UX */
+    .project .desc {
+        opacity: 1 !important;
+        background: rgba(0, 0, 0, 0.7) !important;
+    }
+    
+    .project .desc h3 {
+        transform: translateY(0) !important;
+        color: white !important;
+    }
+}
 
-    .position {
-        font-size: 1em;
+/* Tablet specific improvements */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .colorlib-heading {
+        font-size: 28px;
+    }
+    
+    .services h3 {
+        font-size: 15px !important;
+    }
+    
+    .project .con h3 {
+        font-size: 16px;
+        padding-top: 8ch;
     }
 }
 
